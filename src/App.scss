@@ -1,0 +1,32 @@
+.App {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.nav {
+    list-style-type: none;
+    width: 100vw;
+    display: flex;
+    justify-content: space-evenly;
+
+    &__btn {
+        text-decoration: none;
+        color: inherit;
+        border: 2px solid black;
+        padding: 0 10vw;
+    }
+}
+
+.header-top {
+    width: 100vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.header-nav {
+    width: 100vw;
+    display: flex;
+    justify-content: space-evenly;
+}
