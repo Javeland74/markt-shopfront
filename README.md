@@ -1,3 +1,17 @@
+Welcome to Markt (pronounced Market!) - this is my chosen Capstone project for my Bootcamp program at Brainstation.
+
+Markt will be An app that brings small businesses closer to those in their community by becoming visible to consumers via local map functionality, displaying to consumers all of the (Markt-registered) businesses within a specified radius. Consumers can then choose to follow a business which will trigger the delivery of posts from the business to the consumer's personal feed. Businesses are free to promote their goods and services with the posts that will populate in their followers' feeds. A consumer clicking on a businesses in-app profile will also provide the consumer with walking or cycling directions to that nearby business.
+
+The idea is for small businesses to get on the radar of nearby consumers who may not even know they exist. Perhaps a stay-at-home mom makes natural perfumes in her basement to sell at summer markets, only to have business dwindle in the off season, Markt will allow her to stay connected with a local audience and keep them interested with posts about her new products, promotions, or knowledge. Or perhaps a local coffee shop has the best baklavas this side of the Atlantic, but locals miss out because they only know of a nearby chain instead. You get the idea.
+
+Phase 2 (or if there is time in phase 1!) will include a consumers ability to choose preferences in types of businesses, and recommendations will be offered accordingy. Additionally, an "I'm coming to get it" button will be added to businesses posts so that consumers can show their interest and intention to buy.
+
+Phase 3 will build on the "I'm coming to get it" button in the form of a rating system. In that, if a consumer clicks this button and does not show up, perhaps repeatedly, the business can give them a negative ratings. Likewise if a business cannot deliver what it offered in a post, a consumer can leave a negative review. Conversely each type of user can express positive reviews to their conterparts if they choose. 
+
+Based on the usage throughout the time of the first two phases, phase three may also include direct messaging functionality between consumers and businesses, or perhaps this will take the shape of comments, and comment threads on the exisiting post structure.
+
+I plan to use Mapbox for my mapping functionality, Prisma for database management, and react and node for creating the front-end, and backend respectively.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

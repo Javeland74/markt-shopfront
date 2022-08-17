@@ -9,13 +9,14 @@ import BizSignIn from "./pages/BizSignIn/BizSignIn";
 import NotFound from "./pages/NotFound";
 import Title from "./components/Title";
 import BizButton from "./components/BizButton";
+import { ChakraProvider } from "@chakra-ui/react";
 import { useState } from "react";
 
 
 
 function App() {
 
-  const [login, setLogin] = useState(false);
+  // const [login, setLogin] = useState(false);
 
   return (
     <BrowserRouter>
@@ -44,5 +45,7 @@ function App() {
     </BrowserRouter>
   );
 }
+
+
 
 export default App;
