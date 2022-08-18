@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
-import './App.css';
+import './App.scss';
 import Header from "./components/Header";
 import Home from "./pages/Home/Home";
 import About from "./pages/About/About";
@@ -9,8 +9,9 @@ import BizSignIn from "./pages/BizSignIn/BizSignIn";
 import NotFound from "./pages/NotFound";
 import Title from "./components/Title";
 import BizButton from "./components/BizButton";
-import { ChakraProvider } from "@chakra-ui/react";
-import { useState } from "react";
+import Map from './components/maps/Map';
+// import { ChakraProvider } from "@chakra-ui/react";
+// import { useState } from "react";
 
 
 
@@ -38,6 +39,7 @@ function App() {
             <Route path='/SignUp' component={SignUp} />
             <Route path='/SignIn' component={SignIn} />
             <Route path='/BizSignIn' component={BizSignIn} />
+            <Route path='/Map' component={Map} />
             <Route component={NotFound} />
           </Switch>
         </section>
