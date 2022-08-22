@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import './SignedIn.scss';
+import './BusinessSignedIn.scss';
 import './App.scss';
 import Header from '../components/Header';
 import NotFound from "../../pages/NotFound";
@@ -8,7 +8,7 @@ import LoggedOut from './components/LoggedOut';
 import BizProfile from './components/BizProfile/BizProfile';
 import BizPost from './components/BizPost/BizPost';
 
-function BizSignedIn() {
+const BusinessSignedIn = () => {
     return (
         <BrowserRouter>
             <div className="App">
@@ -29,6 +29,6 @@ function BizSignedIn() {
             </div>
         </BrowserRouter>
     )
-}
+};
 
-export default BusinessSignedIn
+export default BusinessSignedIn;

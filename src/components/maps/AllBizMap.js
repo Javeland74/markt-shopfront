@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import ReactMapGL, { Marker, NavigationControl, Popup } from 'react-map-gl';
 import Icon from 'react-icons-kit/';
-import Home from '../../pages/Home/Home';
+import Home from '../../pages/LoggedOut/Home/Home';
 
 const AllBizMap = () => {
 

@@ -1,34 +1,64 @@
-import { Link } from 'react-router-dom';
+import React from 'react';
+import {
+    Flex,
+    Box,
+    FormControl,
+    FormLabel,
+    Input,
+    Stack,
+    Link,
+    Button,
+    Heading,
+    useColorModeValue,
+} from '@chakra-ui/react';
 
 const BizSignIn = () => {
     return (
-        <>
-            <h1>
-                Business Sign-in Page
-            </h1>
-
-            <form name='business-signin' action='/action_page.php' onsubmit='return validateBusinessLogin()'>
-                <ul>
-                    <li>
-                        <input type="text" id='businessUser-signin' name='businessUser-signin' placeholder="Email:">
-                        </input>
-                    </li>
-                    <li>
-                        <input type="password" id='businesspw-signin' name='businesspw-signin' placeholder="Password:">
-                        </input>
-                    </li>
-                    <li>
-                        <Link to="/">Forgot Password?</Link>
-                    </li>
-                    <li className='sign-in__sumbit-btn btn'>
-                        <button type="submit">
-                            Sign In
-                        </button>
-                    </li>
-                </ul>
-            </form>
-        </>
-    )
+        <Flex
+            minH={'100vh'}
+            w={'100vw'}
+            align={'center'}
+            justify={'center'}
+            bg={useColorModeValue('gray.50', 'gray.800')}>
+            <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} px={6}>
+                <Stack align={'center'}>
+                    <Heading fontSize={'4xl'} color={'red.500'}>Business Sign In</Heading>
+                </Stack>
+                <Box
+                    rounded={'lg'}
+                    bg={useColorModeValue('white', 'gray.700')}
+                    boxShadow={'lg'}
+                    p={8}>
+                    <Stack spacing={4}>
+                        <FormControl id="email">
+                            <FormLabel>Email address</FormLabel>
+                            <Input type="email" />
+                        </FormControl>
+                        <FormControl id="password">
+                            <FormLabel>Password</FormLabel>
+                            <Input type="password" />
+                        </FormControl>
+                        <Stack spacing={10}>
+                            <Stack
+                                direction={{ base: 'column', sm: 'row' }}
+                                align={'start'}
+                                justify={'space-between'}>
+                                <Link href='/' color={'blue.400'}>Forgot password?</Link>
+                            </Stack>
+                            <Button
+                                bg={'blue.400'}
+                                color={'white'}
+                                _hover={{
+                                    bg: 'blue.500',
+                                }}>
+                                Sign in
+                            </Button>
+                        </Stack>
+                    </Stack>
+                </Box>
+            </Stack>
+        </Flex>
+    );
 }
 
-export default BizSignIn
+export default BizSignIn;
