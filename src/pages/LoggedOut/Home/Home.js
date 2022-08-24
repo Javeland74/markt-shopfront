@@ -36,7 +36,7 @@ const Home = () => {
                     connect you with every type of small business within
                     walking or cycling distance of your location. Never
                     miss out on a neighbourhood gem and discover all the
-                    wonder that goes on nearby! Find, follow, and support
+                    wonder that takes place nearby! Find, follow, and support
                     local with Markt.
                 </Text>
                 <Stack spacing={6} direction={'row'}>

@@ -10,10 +10,21 @@ import {
     Heading,
     useColorModeValue,
 } from '@chakra-ui/react';
+import { useHistory } from 'react-router-dom';
 
-const SignIn = () => {
+
+const SignIn = (props) => {
+
+    const history = useHistory();
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        props.setUserLogin(true);
+        history.push('/Profile')
+    };
+
     return (
-        <Flex
+        <Flex as={'form'} onSubmit={handleSubmit}
             minH={'100vh'}
             w={'100vw'}
             align={'center'}
@@ -44,7 +55,7 @@ const SignIn = () => {
                                 justify={'space-between'}>
                                 <Link href='/' color={'blue.400'}>Forgot password?</Link>
                             </Stack>
-                            <Button
+                            <Button type={'submit'}
                                 bg={'blue.400'}
                                 color={'white'}
                                 _hover={{

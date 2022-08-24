@@ -10,9 +10,21 @@ import {
     Button,
     Heading,
     useColorModeValue,
+    FormErrorMessage,
 } from '@chakra-ui/react';
+import { useHistory } from 'react-router-dom';
 
-const BizSignIn = () => {
+
+const BizSignIn = (props) => {
+
+    const history = useHistory();
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        props.setBizLogin(true);
+        history.push('/BizProfile')
+    };
+
     return (
         <Flex
             minH={'100vh'}
@@ -24,17 +36,24 @@ const BizSignIn = () => {
                 <Stack align={'center'}>
                     <Heading fontSize={'4xl'} color={'red.500'}>Business Sign In</Heading>
                 </Stack>
-                <Box
+                <Box as={'form'} onSubmit={handleSubmit}
                     rounded={'lg'}
                     bg={useColorModeValue('white', 'gray.700')}
                     boxShadow={'lg'}
                     p={8}>
                     <Stack spacing={4}>
-                        <FormControl id="email">
+
+                        <FormControl id="email" isRequired>
+                            {/* // isInvalid={isError}> */}
                             <FormLabel>Email address</FormLabel>
-                            <Input type="email" />
+                            <Input
+                                type={"email"}
+                            />
+                            {(
+                                <FormErrorMessage>Email is required.</FormErrorMessage>
+                            )}
                         </FormControl>
-                        <FormControl id="password">
+                        <FormControl id="password" isRequired>
                             <FormLabel>Password</FormLabel>
                             <Input type="password" />
                         </FormControl>
@@ -45,7 +64,7 @@ const BizSignIn = () => {
                                 justify={'space-between'}>
                                 <Link href='/' color={'blue.400'}>Forgot password?</Link>
                             </Stack>
-                            <Button
+                            <Button type={'submit'}
                                 bg={'blue.400'}
                                 color={'white'}
                                 _hover={{
@@ -56,8 +75,8 @@ const BizSignIn = () => {
                         </Stack>
                     </Stack>
                 </Box>
-            </Stack>
-        </Flex>
+            </Stack >
+        </Flex >
     );
 }
 

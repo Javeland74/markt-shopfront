@@ -1,32 +1,27 @@
-import './BizPost.scss'
-import { Flex, Box, Button, Image, Spacer } from '@chakra-ui/react'
+import React from 'react'
+import { Flex, Box, Button, Image, Spacer, Input, Heading } from '@chakra-ui/react'
 
 const NewBizPost = () => {
     return (
         <>
-            <Flex>
-                <h1>
+            <Flex p={'2rem'}>
+                <Heading as={'h2'} size={'xl'}>
                     Product or Service Upload
-                </h1>
+                </Heading>
             </Flex>
-            <Flex align={'centre'}>
+            <Flex flexDirection={'column'} align={'center'} >
                 <Flex>
-                    <Flex align={'center'}>
-                        <Button>
-                            <Image />
-                        </Button>
-                    </Flex>
                     <Flex>
-                        <Button>
+                        <Button h={'4rem'} w={'8rem'}>
                             Select Image
                         </Button>
                     </Flex>
                 </Flex>
-                <Box>
-                    <input>Enter Post Text:</input>
+                <Box p={'2rem'}>
+                    <Input type={'text'} maxChar={'50'} h={'6rem'} w={'20rem'} placeholder={'Enter Post Text:'}></Input>
                 </Box>
                 <Box>
-                    <button>Publish</button>
+                    <Button h={'2.5rem'} w={'6rem'} bg='red.500' color={'#fff'} >Publish</Button>
                 </Box>
             </Flex>
         </>
