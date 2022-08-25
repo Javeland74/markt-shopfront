@@ -9,8 +9,6 @@ import {
 const Header = (props) => {
     const { userLogin, bizLogin, setUserLogin, setBizLogin } = props
 
-    console.log(userLogin, bizLogin);
-
     let leftLink = { name: 'About', url: '/about' }
     let centreLink = { name: 'Sign Up', url: '/signup' }
     let rightLink = { name: 'Sign In', url: '/signin' }
