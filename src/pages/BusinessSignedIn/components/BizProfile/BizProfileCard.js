@@ -46,7 +46,6 @@ function BizProfileCard(props) {
                 <Box p={6}>
                     <Stack direction={'row'} justify={'center'} spacing={6}>
                         <Stack spacing={0} align={'center'}>
-                            {/* <Text fontWeight={600}>23k</Text> */}
                             <Text fontSize={'sm'} color={'red.500'} paddingBottom={'1rem'}>
                                 Owner:
                             </Text>

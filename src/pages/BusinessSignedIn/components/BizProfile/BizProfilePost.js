@@ -6,10 +6,8 @@ const BizProfilePost = (props) => {
     console.log(props)
     return (
         <Flex justifyContent={'space-between'}>
-            <ListItem>
-                <StarIcon marginRight={'1rem'} />
-                {props.post.body}
-            </ListItem>
+            <StarIcon marginRight={'1rem'} />
+            {props.post.body}
             <Box>
                 <EditIcon />
                 <DeleteIcon marginLeft={'0.5rem'} />

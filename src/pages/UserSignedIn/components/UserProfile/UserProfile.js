@@ -3,7 +3,7 @@ import { Box, Flex, Image, Heading, useDisclosure, Icon, ListItem, Button, Link,
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 import AllBizMap from '../../../../components/maps/AllBizMap';
-import UserProfileCard from './UserProfileCard';
+import UserProfileCard from './UserProfileCard';// 
 import { useParams } from 'react-router-dom';
 import UserFollowed from './UserFollowed';
 
