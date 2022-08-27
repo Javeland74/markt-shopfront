@@ -5,7 +5,6 @@ import axios from 'axios';
 import OneBizMap from '../../../../components/maps/OneBizMap';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-// import { Link, Redirect } from 'react-router-dom';
 import profilePic from '../../../../assets/stock-profile.jpeg';
 import mapPreview from '../../../../assets/Map-Default-Link-Image.png';
 import BizProfileCard from '../../../BusinessSignedIn/components/BizProfile/BizProfileCard';

@@ -7,8 +7,6 @@ import {
     Text,
     Button,
     Image,
-    Icon,
-    IconProps,
 } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
 import HeroImg from '../../../assets/Markt-homepage-hero.png'
