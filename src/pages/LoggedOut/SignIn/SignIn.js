@@ -9,19 +9,38 @@ import {
     Button,
     Heading,
     useColorModeValue,
+    FormErrorMessage
 } from '@chakra-ui/react';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-
 
 const SignIn = (props) => {
 
+    const [userID, setUserID] = useState(null)
     const history = useHistory();
+
+    const getUserID = async () => {
+        const userID = await axios.get('http://localhost:8080/api/users')
+            .catch((err) => {
+                console.log(err);
+            })
+        setUserID(userID.data);
+    }
+
+    useEffect(() => {
+        getUserID()
+    }, [])
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        const { email } = e.target
         props.setUserLogin(true);
-        history.push('/Profile')
-    };
+        props.setLoggedInUser(userID);
+
+        const userInfo = userID?.filter(user => user.email === email.value);
+        history.push(`profile/${userInfo[0].id}`)
+    }
 
     return (
         <Flex as={'form'} onSubmit={handleSubmit}
@@ -42,8 +61,12 @@ const SignIn = (props) => {
                     <Stack spacing={4}>
                         <FormControl id="email">
                             <FormLabel>Email address</FormLabel>
-                            <Input type="email" />
+                            <Input name='email' type="email" />
                         </FormControl>
+                        {(
+                            <FormErrorMessage>Email is required.</FormErrorMessage>
+
+                        )}
                         <FormControl id="password">
                             <FormLabel>Password</FormLabel>
                             <Input type="password" />

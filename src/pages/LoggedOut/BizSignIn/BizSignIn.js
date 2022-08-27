@@ -1,4 +1,3 @@
-import React from 'react';
 import {
     Flex,
     Box,
@@ -12,21 +11,39 @@ import {
     useColorModeValue,
     FormErrorMessage,
 } from '@chakra-ui/react';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 
 
 const BizSignIn = (props) => {
 
+    const [bizID, setBizID] = useState(null)
     const history = useHistory();
+
+    const getbizID = async () => {
+        const thisBizID = await axios.get('http://localhost:8080/api/businesses')
+            .catch((err) => {
+                console.log(err);
+            });
+        setBizID(thisBizID.data)
+    }
+
+    useEffect(() => {
+        getbizID()
+    }, [])
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        props.setBizLogin(true);
-        history.push('/BizProfile')
-    };
+        const { email } = e.target
+        props.setBizLogin(true)
+        props.setLoggedInBiz(bizID)
+        const bizInfo = bizID?.filter(biz => biz.email === email.value);
+        history.push(`bizprofile/${bizInfo[0].id}`)
+    }
 
     return (
-        <Flex
+        <Flex as={'form'} onSubmit={handleSubmit}
             minH={'100vh'}
             w={'100vw'}
             align={'center'}
@@ -36,18 +53,17 @@ const BizSignIn = (props) => {
                 <Stack align={'center'}>
                     <Heading fontSize={'4xl'} color={'red.500'}>Business Sign In</Heading>
                 </Stack>
-                <Box as={'form'} onSubmit={handleSubmit}
+                <Box
                     rounded={'lg'}
                     bg={useColorModeValue('white', 'gray.700')}
                     boxShadow={'lg'}
                     p={8}>
                     <Stack spacing={4}>
-
-                        <FormControl id="email" isRequired>
-                            {/* // isInvalid={isError}> */}
+                        <FormControl id="email">
                             <FormLabel>Email address</FormLabel>
                             <Input
-                                type={"email"}
+                                name='email'
+                                type='email'
                             />
                             {(
                                 <FormErrorMessage>Email is required.</FormErrorMessage>

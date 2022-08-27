@@ -1,47 +1,65 @@
 import React from 'react'
-import { Box, Flex, Image, Heading, Stack, Icon, UnorderedList, ListItem, Button, List, TagLeftIcon } from '@chakra-ui/react';
+import { Box, Flex, Image, Heading, Button, List, ListItem } from '@chakra-ui/react';
 import axios from 'axios';
-import OneBizMap from '../../../../components/maps/OneBizMap';
 import { useState, useEffect } from 'react';
-import { Link, Redirect } from 'react-router-dom';
-import profilePic from '../../../../assets/stock-profile.jpeg';
 import mapPreview from '../../../../assets/Map-Default-Link-Image.png';
+import BizProfileCard from './BizProfileCard';
+import BizProfilePost from './BizProfilePost';
+import { useParams } from 'react-router-dom';
+
 
 const BizProfile = () => {
 
     const [posts, setPosts] = useState(null);
+    const [business, setBusiness] = useState(null)
+
+    const { bizID } = useParams();
+
 
     const getPosts = async () => {
-        const posts = await axios.get('http://localhost:8080/api/businessPosts')
+        const posts = await axios.get(`http://localhost:8080/api/businessPosts/${bizID}`)
             .catch((err) => {
                 console.log(err);
             });
-        setPosts(posts)
-        console.log(posts.data);
+        setPosts(posts.data)
+        console.log(posts.data)
+    };
+
+    const getBusiness = async () => {
+        const business = await axios.get('http://localhost:8080/api/businesses')
+            .catch((err) => {
+                console.log(err);
+            });
+        setBusiness(business.data)
     };
 
     useEffect(() => {
+        getBusiness()
         getPosts()
     }, [])
-    // console.log(posts.data[2].body)
-
-    return (
+    return business === null ? null : (
         <>
+
             <Flex paddingTop={'2rem'}>
-                <Box paddingRight={'2rem'}>
-                    <Image boxSize={'8rem'} src={profilePic} alt={'stock portrait image Markt'} />
-                </Box>
-                <Flex paddingRight={'2rem'} h={'6rem'} direction={'column'} align={'flex-start'}>
-                    <Heading as={'h2'} size={'l'}>
-                        <Box as={'span'} textColor={'red.500'}> Business Name:</Box> {posts?.data[0]?.businesses.biz_name}
-                    </Heading>
-                    <Heading as={'h2'} size={'l'}>
-                        <Box as={'span'} textColor={'red.500'}> Location:</Box> {posts?.data[0].businesses.address}
-                    </Heading>
-                </Flex>
+                {business.filter(thisBiz => thisBiz.id === parseInt(bizID)).map(biz => {
+                    return (
+                        <>
+                            <Box>
+                                <BizProfileCard name={biz.owner} />
+                            </Box><Flex paddingRight={'2rem'} h={'6rem'} direction={'column'} align={'flex-start'}>
+                                <Heading as={'h2'} size={'l'}>
+                                    <Box as={'span'} textColor={'red.500'}> Business Name:</Box> {biz.biz_name}
+                                </Heading>
+                                <Heading as={'h2'} size={'l'}>
+                                    <Box as={'span'} textColor={'red.500'}> Location:</Box> {biz.address}
+                                </Heading>
+                            </Flex>
+                        </>)
+                })}
+
+
                 <Box>
                     <Image boxSize={'6rem'} src={mapPreview} alt={'map preview link img Markt'} />
-                    {/* <OneBizMap /> */}
                 </Box>
             </Flex>
             <Flex paddingTop={'2rem'} flexDirection={'column'} >
@@ -50,19 +68,18 @@ const BizProfile = () => {
                         Featured Products/Services
                     </Heading>
                     <Box>
-                        <Button>Edit/Remove Items</Button>
                         <Button marginLeft={'2rem'} >Add New</Button>
                     </Box>
                 </Flex>
-                <List spacing={3}>
-                    <ListItem><Icon />
-                        {posts?.data[0].body}
-                    </ListItem>
-                    <ListItem><Icon />
-                        {posts?.data[1].body}
-                    </ListItem>
-                    <ListItem><Icon />
-                        {posts?.data[2].body}
+                <List>
+                    <ListItem>
+                        {posts?.map((postItem) => {
+                            return (
+                                <BizProfilePost
+                                    key={postItem.id}
+                                    post={postItem} />
+                            )
+                        })}
                     </ListItem>
                 </List>
             </Flex>

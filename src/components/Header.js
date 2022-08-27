@@ -6,6 +6,7 @@ import {
 } from '@chakra-ui/react'
 
 
+
 const Header = (props) => {
     const { userLogin, bizLogin, setUserLogin, setBizLogin } = props
 
@@ -15,13 +16,13 @@ const Header = (props) => {
 
     if (userLogin) {
         leftLink = { name: 'Logout', url: '/logout' }
-        centreLink = { name: 'Profile', url: '/profile' }
-        rightLink = { name: 'Feed', url: '/feed' }
+        centreLink = { name: 'Profile', url: `/profile/${props.loggedInUser}` }
+        rightLink = { name: 'Feed', url: `/feed/${props.loggedInUser}` }
     };
     if (bizLogin) {
         leftLink = { name: 'Logout', url: '/logout' }
-        centreLink = { name: 'Profile', url: '/bizprofile' }
-        rightLink = { name: 'Add New', url: '/addnew' }
+        centreLink = { name: 'Profile', url: `/bizprofile/${props.loggedInBiz}` }
+        rightLink = { name: 'Add New', url: `/addnew/${props.loggedInBiz}` }
     };
 
     const logout = () => {

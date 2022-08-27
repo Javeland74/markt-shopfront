@@ -1,19 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import ReactMapGL, { Marker, NavigationControl, Popup } from 'react-map-gl';
-import Icon from 'react-icons-kit/';
-import Home from '../../pages/LoggedOut/Home/Home';
+import { Link } from 'react-router-dom';
 
 const AllBizMap = () => {
 
     const [businesses, setBusinesses] = useState(null)
     const [selectedBusiness, setSelectedBusiness] = useState(null);
     const [viewport, setViewport] = useState({
-        height: '100vh',
-        width: '100vw',
+        height: window.innerHeight,
+        width: window.innerWidth,
         latitude: 53.5462055,
         longitude: -113.491241,
-        zoom: 10
+        zoom: 11
     });
 
     const fetchAllBizAddress = async () => {
@@ -22,6 +21,7 @@ const AllBizMap = () => {
                 console.log(err);
             });
         setBusinesses(businesses.data)
+        console.log(businesses);
     };
 
     useEffect(() => {
@@ -37,32 +37,30 @@ const AllBizMap = () => {
                 onViewportChange={viewport => {
                     setViewport(viewport);
                 }}
-                style={{ width: '500px', height: '500px' }}
+                style={{ width: '25rem', height: '20rem' }}
             >
                 {businesses.map(business => {
-                    <Marker
-                        key={business.id}
-                        longitude={parseFloat(business.lng)}
-                        latitude={parseFloat(business.lat)}
-                    ></Marker>
+                    return (
+                        <Marker
+                            key={business.id}
+                            longitude={Number(business.lng)}
+                            latitude={Number(business.lat)}
+                        ></Marker>
+                    )
                 })};
-                {/* 
-                {/* })} */}
-                {/* {selectedBusiness ? (
-                    {
-                        businesses.map((business) => {
-                            <>
-                            <Popup
-                                latitude={business.lat}
-                                longitude={business.lng} >
-                                <div>
-                                    Selected:
-                                    {business.biz_name} - {business.business_type}
-                                    <link>View Profile</link>
-                                </div>
-                            </Popup>
-                        })
-                    }) : null} */}
+                {businesses.map(business => {
+                    return (
+                        <Popup
+                            latitude={business?.lat}
+                            longitude={business?.lng}
+                            closeButton={true}
+                            anchor='bottom-left'>
+                            <div>{business?.biz_name}</div>
+                            <div>{business?.business_type}</div>
+                            <div><Link to={'/bizasuser'}>Details</Link></div>
+                        </Popup>
+                    )
+                })}
                 <NavigationControl />
             </ReactMapGL>
         </div >

@@ -1,8 +1,6 @@
-import { Link } from "react-router-dom";
 import {
     List,
     ListItem,
-    Flex,
     Heading
 } from '@chakra-ui/react'
 import axios from "axios";
@@ -10,12 +8,12 @@ import FeedItem from "./FeedItem";
 import { useState } from "react";
 import { useEffect } from "react";
 
-const UserFeed = () => {
+const UserFollowed = () => {
 
     const [feed, setFeed] = useState(null)
 
     const fetchUserFeed = async () => {
-        const userFeed = await axios.get('http://localhost:8080/api/businessPosts')
+        const userFeed = await axios.get('http://localhost:8080/api/followedBusinessPosts')
             .catch((err) => {
                 console.log(err);
             });
@@ -24,8 +22,8 @@ const UserFeed = () => {
 
     useEffect(() => {
         fetchUserFeed()
-    }, [])
-    console.log(feed);
+    }, []);
+
 
     return (
         <>
@@ -48,4 +46,4 @@ const UserFeed = () => {
     )
 };
 
-export default UserFeed;
+export default UserFollowed;

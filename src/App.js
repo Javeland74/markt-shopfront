@@ -13,10 +13,9 @@ import UserProfile from "./pages/UserSignedIn/components/UserProfile/UserProfile
 import UserFeed from "./pages/UserSignedIn/components/UserFeed/UserFeed";
 import NewBizPost from "./pages/BusinessSignedIn/components/BizPost/NewBizPost";
 import BizProfile from "./pages/BusinessSignedIn/components/BizProfile/BizProfile";
-// import BusinessMap from './components/maps/BusinessLocator/BusinessMap';
+import BizProfileAsUser from './pages/UserSignedIn/components/BizProfileAsUser/BizProfileAsUser';
 import OneBizMap from './components/maps/OneBizMap';
 import AllBizMap from './components/maps/AllBizMap';
-// import BusinessLocator from './components/maps/BusinessLocator/BusinessLocator';
 import { useState } from "react";
 
 
@@ -25,6 +24,8 @@ function App() {
 
   const [userLogin, setUserLogin] = useState(false);
   const [bizLogin, setBizLogin] = useState(false);
+  const [loggedInUser, setLoggedInUser] = useState(null);
+  const [loggedInBiz, setLoggedInBiz] = useState(null);
 
   return (
     <BrowserRouter>
@@ -32,40 +33,47 @@ function App() {
         <div className='header-top'>
           <Title />
           {!bizLogin && !userLogin ? <BizButton /> : null}
-          {/* <button onClick={() => setLogin(!login)}>{login ? "Sign Out" : "Business Sign In"} </button> */}
         </div>
         <div className='header-nav'>
-          <Header userLogin={userLogin} bizLogin={bizLogin} setUserLogin={setUserLogin} setBizLogin={setBizLogin} />
+          <Header
+            userLogin={userLogin}
+            bizLogin={bizLogin}
+            setUserLogin={setUserLogin}
+            setBizLogin={setBizLogin}
+            loggedInBiz={loggedInBiz}
+            loggedInUser={loggedInUser} />
         </div>
         <section className='main-section'>
           <Switch>
             {/* LOGGED OUT ROUTES */}
             <Route path='/' component={Home} exact />
             <Route path='/about' component={About} />
-            {/* {login ? <About /> : <Redirect to="/" />} */}
-            {/* </Route> */}
             <Route path='/SignUp'>
-              <SignUp setBizLogin={setBizLogin} setUserLogin={setUserLogin} />
+              <SignUp
+              />
             </Route>
             <Route path='/SignIn'>
-              <SignIn setUserLogin={setUserLogin} />
+              <SignIn
+                setUserLogin={setUserLogin}
+                setLoggedInUser={setLoggedInUser} />
             </Route>
             <Route path='/BizSignIn'>
-              <BizSignIn setBizLogin={setBizLogin} />
+              <BizSignIn
+                setBizLogin={setBizLogin}
+                setLoggedInBiz={setLoggedInBiz} />
             </Route>
-            {/* <Route path='/Map' component={Map} /> */}
             <Route path='/ThisBusiness' exact component={OneBizMap} />
             <Route path='/AllBusinesses' exact component={AllBizMap} />
-            <Route path='/profile' component={UserProfile} />
+            <Route path='/profile/:userid' component={UserProfile} />
             {/* USER ROUTES */}
-            <Route path='/Logout'>
+            <Route path='/Logout' setLoggedInBiz={null} setLoggedInUser={null} >
               <Redirect to='/' />
             </Route>
-            <Route path='/Profile' component={UserProfile} />
+            <Route path='/BizAsUser' component={BizProfileAsUser} />
             {/* BUSINESS ROUTES */}
-            <Route path='/Feed' exact component={UserFeed} />
-            <Route path='/BizProfile' component={BizProfile} />
-            <Route path='/addnew' component={NewBizPost} />
+            <Route path='/Feed'> <UserFeed loggedInUser={loggedInUser} /> </Route>
+            <Route path='/BizProfile/:bizID' component={BizProfile} />
+            <Route path='/addnew'> <NewBizPost loggedInBiz={loggedInBiz} />  </Route>
             <Route component={NotFound} />
           </Switch>
         </section>
