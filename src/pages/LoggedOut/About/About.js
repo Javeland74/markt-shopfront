@@ -24,7 +24,7 @@ const About = () => {
                     noOfLines={2}>
                     What is Markt?{' '}
                     <Text as={'span'} color={'red.500'}>
-                        (pronounced "Market")
+                        (pronounced "Markt")
                     </Text>
                 </Heading>
                 <Text color={'gray.500'} maxW={'3xl'}>
