@@ -1,4 +1,6 @@
-Welcome to Markt (pronounced Market!) - this is my chosen Capstone project for my Bootcamp program at Brainstation.
+#Welcome to Markt (pronounced Market!)
+
+##This is my chosen Capstone project for my Bootcamp program at Brainstation.
 
 Markt will be an app that brings small businesses closer to those in their community by becoming visible to consumers via local map functionality, displaying to consumers all of the (Markt-registered) businesses within a specified radius. Consumers can then choose to follow a business which will trigger the delivery of posts from the business to the consumer's personal feed. Businesses are free to promote their goods and services with the posts that will populate in their followers' feeds. A consumer clicking on a businesses in-app profile will also provide the consumer with walking or cycling directions to that nearby business.
 
@@ -11,6 +13,19 @@ Phase 3 will build on the "I'm coming to get it" button in the form of a rating 
 Based on the usage throughout the time of the first two phases, phase three may also include direct messaging functionality between consumers and businesses, or perhaps this will take the shape of comments, and comment threads on the exisiting post structure.
 
 I plan to use Mapbox for my mapping functionality, Prisma for database management, and react and node for creating the front-end, and backend respectively.
+
+#To Install Markt
+
+##Steps
+
+1. Clone Repo
+
+2. Open in local editor/command line
+
+3. Install NPM ( npm install )
+
+4. See READ.me at [Markt-Back-End](https://github.com/Javeland74/markt-back-end) repo for installing the back end of this project.
+
 
 # Getting Started with Create React App
 
